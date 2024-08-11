@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Обновить информацию книги
+{% endblock %}
+
+{% block content %}
+  <h1 class="display-1" style="margin-bottom: 100px; text-align: center;">
+    Обновить информацию книги {{ object.title }}
+  </h1>
+  <div>
+    <form method="post">
+      {% csrf_token %}
+      <div style="margin-bottom: 70px;">
+        {{ form.as_p }}
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Обновить информацию книги</button>
+      <a href="{% url 'library:books_list' %}" class="btn btn-secondary btn-lg">
+        Вернуться к списку книг
+      </a>
+    </form>
+  </div>
+{% endblock %}

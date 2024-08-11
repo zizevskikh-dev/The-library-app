@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Удалить книгу
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-1" style="margin-bottom: 100px; text-align: center;">
+        Вы уверены, что хотите удалить <code>{{ object.title }}</code> из списка книг?
+    </h1>
+    <div  class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-danger btn-lg">Подтвердить удаление</button>
+            </form>
+        </div>
+        <div class="btn-group me-2" role="group" aria-label="Second group">
+            <a href="{% url 'library:books_details' pk=object.pk %}" class="btn btn-secondary btn-lg">
+                Вернуться к информации о книге
+            </a>
+        </div>
+    </div>
+{% endblock %}

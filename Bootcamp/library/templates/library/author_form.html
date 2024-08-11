@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создать нового автора
+{% endblock %}
+
+{% block content %}
+<h1 class="display-1" style="margin-bottom: 100px; text-align: center;">Создать нового автора</h1>
+<form method="post">
+  {% csrf_token %}
+  <div style="margin-bottom: 70px;">
+    {% for field in form %}
+      {{field.label_tag}}
+      <div>
+        {{field}}
+      </div>
+      {% if field.errors %}
+        {% for error in field.errors %}
+          {{error}}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg">Создать нового автора</button>
+  <a href="{% url 'library:authors_list' %}" class="btn btn-secondary btn-lg">
+    Вернуться к списку авторов
+  </a>
+</form>
+{% endblock %}

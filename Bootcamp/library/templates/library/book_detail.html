@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{object.title}}
+{% endblock %}
+
+{% block content %}
+    <h1 class="display-1" style="margin-bottom: 100px; text-align: center;">{{ object.title }}</h1>
+    <ul class="list-group list-group-flush" style="margin-bottom: 70px;">
+        <li class="list-group-item list-group-item-action disabled" aria-disabled="true">
+            Список авторов книги "{{object.title}}":
+        </li>
+        {% for object in object.authors.all %}
+            <li class="list-group-item list-group-item-action">
+                <a href="{% url 'library:authors_details' pk=object.pk %}" style="text-decoration: none;">
+                    {{ object.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'library:books_update' pk=object.pk %}" class="btn btn-primary btn-lg">
+        Обновить информацию книги
+    </a>
+    <a href="{% url 'library:books_delete' pk=object.pk %}" class="btn btn-danger btn-lg">
+        Удалить книгу
+    </a>
+    <a href="{% url 'library:books_list' %}" class="btn btn-secondary btn-lg">
+        Вернуться к списку книг
+    </a>
+{% endblock %}
